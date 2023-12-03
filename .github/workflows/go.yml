@@ -3,11 +3,10 @@
 
 name: Go
 
-on:
+on: 
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags:
+    - '*'
 
 jobs:
 
@@ -24,13 +23,18 @@ jobs:
         go-version: '1.21'
 
     - name: Build
+      env: 
+        CGO_ENABLED: 0
       run: |
         go get .
         mkdir -p bin
-        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o bin/snowmachine
-        CGO_ENABLED=0 GOOS=darwin go build -ldflags "-s -w" -o bin/snowmachine-darwin
-        CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -a -ldflags "-s -w" -o bin/snowmachine-darwin-arm64
-        CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=6 go build -ldflags "-s -w" -o bin/snowmachine-armhf 
-        CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -ldflags "-s -w" -o bin/snowmachine-arm64
-        CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o bin/snowmachine.exe
-
+        GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o bin/snowmachine
+        GOOS=darwin go build -ldflags "-s -w" -o bin/snowmachine-darwin
+        GOOS=darwin GOARCH=arm64 go build -a -ldflags "-s -w" -o bin/snowmachine-darwin-arm64
+        GOOS=linux GOARCH=arm GOARM=6 go build -ldflags "-s -w" -o bin/snowmachine-armhf 
+        GOOS=linux GOARCH=arm64 go build -ldflags "-s -w" -o bin/snowmachine-arm64
+        GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o bin/snowmachine.exe
+   
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "bin/snowmachine*"
