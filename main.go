@@ -159,6 +159,19 @@ func setParticle(p *string) rune {
 	return rune(0)
 }
 
+func getMode(m []string) (string, error) {
+
+	var retMode string
+
+	if len(m[1:]) > 0 {
+		retMode = strings.ToLower(m[1])
+		if retMode == "tree" || retMode == "snow" {
+			return retMode, nil
+		}
+	}
+	return "", fmt.Errorf("supported commands are 'snow' and 'tree'")
+}
+
 func main() {
 
 	snowCmd := flag.NewFlagSet("snow", flag.ExitOnError)
@@ -185,9 +198,9 @@ func main() {
 		os.Exit(0)
 	}()
 
-	mode := strings.ToLower(os.Args[1])
-	if mode != "tree" && mode != "snow" {
-		fmt.Println("supported commands are 'snow' and 'tree'")
+	mode, err := getMode(os.Args)
+	if err != nil {
+		fmt.Printf("%s", err)
 		os.Exit(1)
 	}
 
