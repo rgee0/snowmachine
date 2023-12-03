@@ -1,17 +1,27 @@
 # snowmachine
 
-A Go port of the python script by (John Anderson)[https://github.com/sontek/snowmachine] that brings a little festive cheer to your terminal. View it in action here:
+A Go port of the python script by [John Anderson](https://github.com/sontek/snowmachine) that brings a little festive cheer to your terminal. View it in action here:
 
 ![Rainbow ascii tree with snowfall](./images/animatedtree.gif)
 
+## Installation
 
+### Linux / MacOs
 
-Getting Started
+```sh
+curl -sLS https://raw.githubusercontent.com/rgee0/snowmachine/main/get.sh | sudo sh
+```
+
+## Getting Started
 ---------------
 You can make it snow:
 
 ```bash
 $ snowmachine snow
+
+or using the alias `sm`
+
+$ sm snow
 ```
 ![Example of snow command](./images/snow.png)
 
