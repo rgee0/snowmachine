@@ -6,6 +6,15 @@ A Go port of the python script by [John Anderson](https://github.com/sontek/snow
 
 ## Installation
 
+### arkade
+
+Already an [arkade](https://github.com/alexellis/arkade) user?  Update and download the CLI using:
+
+```sh
+arkade update
+arkade get snowmachine
+```
+
 ### Linux / MacOs
 
 ```sh
