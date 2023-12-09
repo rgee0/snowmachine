@@ -4,6 +4,9 @@ A Go port of the python script by [John Anderson](https://github.com/sontek/snow
 
 ![Rainbow ascii tree with snowfall](./images/animatedtree.gif)
 
+## Badges
+![Download Count Shield](https://img.shields.io/github/downloads/rgee0/snowmachine/total)
+
 ## Installation
 
 ### arkade
